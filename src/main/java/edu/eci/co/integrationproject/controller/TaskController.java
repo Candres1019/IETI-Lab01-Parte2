@@ -20,14 +20,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * The controller of the endpoint for the task
+ *
+ * @author Andres Calderon (andres.calderon@escuelaing.edu.co)
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 @Log4j2
 @RestController
 @RequestMapping("/v1/task")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TaskController {
 
+	/**
+	 * The task service
+	 */
 	private final TaskService taskService;
 
+	/**
+	 * Get All endpoint
+	 *
+	 * @return List of the {@link Task} saved in the server
+	 */
 	@GetMapping
 	public ResponseEntity<List<Task>> all() {
 
@@ -39,6 +54,12 @@ public class TaskController {
 		}
 	}
 
+	/**
+	 * Get findById endpoint
+	 *
+	 * @param id The id of the {@link Task} to be found
+	 * @return The {@link Task} found
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Task> findById(@PathVariable String id) {
 
@@ -50,6 +71,12 @@ public class TaskController {
 		}
 	}
 
+	/**
+	 * Post create endpoint
+	 *
+	 * @param taskDto The {@link TaskDto} to be saved
+	 * @return The {@link Task} saved in the server
+	 */
 	@PostMapping
 	public ResponseEntity<Task> create(@RequestBody TaskDto taskDto) {
 
@@ -62,6 +89,13 @@ public class TaskController {
 		}
 	}
 
+	/**
+	 * Put update endpoint
+	 *
+	 * @param taskDto The {@link TaskDto} to be updated
+	 * @param id      The {@link Task} id to be updated
+	 * @return The {@link Task} after being updated
+	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Task> update(@RequestBody TaskDto taskDto, @PathVariable String id) {
 
@@ -74,6 +108,12 @@ public class TaskController {
 		}
 	}
 
+	/**
+	 * Delete delete endpoint
+	 *
+	 * @param id The {@link Task} id to be deleted
+	 * @return If the Task has been deleted
+	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Boolean> delete(@PathVariable String id) {
 
