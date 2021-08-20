@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "abf6d582-a174-48e2-8b77-85c5c07de36d",
+		"name": "TaskController",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "update",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const dateNow= new Date();",
+							"pm.environment.set('currentDate', dateNow.toISOString());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Implement Postgres Connection\",\n    \"description\": \"Implement the connection to the Postgres DB using the default configuration\",\n    \"status\": \"DONE\",\n    \"assignedTo\": \"Andres Calderon\",\n    \"dueDate\": \"2021-08-30T18:18:23.912+00:00\",\n    \"createdAt\": \"2021-08-20T18:18:23.910+00:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/v1/task/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"v1",
+						"task",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/v1/task",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"v1",
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/v1/task/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"v1",
+						"task",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findById",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/v1/task/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"v1",
+						"task",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//Current Date",
+							"const dateNow= new Date();",
+							"pm.environment.set('currentDate', dateNow.toISOString());",
+							"//Current Date + 10 days",
+							"var moment = require(\"moment\")",
+							"pm.environment.set('dueDate', moment().add(10, 'days').toISOString())"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"Implement Postgres Connection\",\n    \"description\" : \"Implement the connection to the Postgres DB using the default configuration\",\n    \"status\" : \"DOING\",\n    \"assignedTo\": \"Andres Calderon\",\n    \"dueDate\" : \"{{dueDate}}\",\n    \"createdAt\" : \"{{currentDate}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/v1/task",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"v1",
+						"task"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
